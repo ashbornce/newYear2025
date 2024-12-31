@@ -97,6 +97,27 @@
                 opacity: 1;
             }
         }
+
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #004e92;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .controls button:hover {
+            background-color: #0074e4;
+        }
     </style>
 </head>
 
@@ -105,6 +126,9 @@
     <div class="number" id="year">2024</div>
     <canvas class="fireworks"></canvas>
     <audio id="fireworkSound" src="sound/Fireworks.mp3" preload="auto" loop></audio>
+    <div class="controls">
+        <button id="toggleSound">Pause Sound</button>
+    </div>
 
     <script>
         const yearElement = document.getElementById('year');
@@ -200,6 +224,18 @@
         createStars();
         setInterval(launchFirework, 500);
         animate();
+
+        const toggleSoundButton = document.getElementById('toggleSound'); // Pastikan elemen tombol diambil dengan benar
+        // Toggle sound play/pause
+        toggleSoundButton.addEventListener('click', () => {
+            if (fireworkSound.paused) {
+                fireworkSound.play();
+                toggleSoundButton.textContent = 'Pause Sound';
+            } else {
+                fireworkSound.pause();
+                toggleSoundButton.textContent = 'Play Sound';
+            }
+        });
     </script>
 </body>
 
